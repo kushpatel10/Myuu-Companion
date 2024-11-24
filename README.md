@@ -5,7 +5,7 @@ A Discord bot designed to detect and handle specific Pokémon encounters (e.g., 
 ---
 ## **Features**
 
-- Detects and processes messages from a specific bot (`id: 438057969251254293`).
+- Detects and processes messages from myuu(`id: 438057969251254293`).
 - Recognizes Pokémon like "Shiny" and "Greninja-Ash" and performs actions such as:
   - Timing out users for a short duration.
   - Sending embeds with encounter details in the same channel.
