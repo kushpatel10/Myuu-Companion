@@ -7,7 +7,7 @@ module.exports = async (client, SHINY_LOG_CHANNEL_MAP , message) => {
                 if (message.embeds.length > 0) {
                     const embedDescription = message.embeds[0]?.description;
 
-                    if (embedDescription?.includes("A wild") && embedDescription?.includes("Yungoos")) {
+                    if (embedDescription?.includes("A wild") && embedDescription?.includes("★")) {
                         const logChannelId = SHINY_LOG_CHANNEL_MAP[message.guild.id];
                         if (!logChannelId) return; 
 
