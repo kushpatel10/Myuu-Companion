@@ -2,6 +2,10 @@
 
 A Discord bot designed to detect and handle specific Pokémon encounters (e.g., "Shiny" Pokémon or "Greninja-Ash") in messages from a specific bot and log these encounters in designated channels. The bot also provides additional functionality through various slash commands.
 
+# **Whats-New**
+- Added MongoDB to store the no. of shinys
+- Image leaderboard for the shinys encountered using Sharp module 
+- New Leaderboard commands!!
 ---
 ## **Features**
 
@@ -15,7 +19,12 @@ A Discord bot designed to detect and handle specific Pokémon encounters (e.g., 
   - `/botinfo` - Get detailed information about the bot.
   - `/serverinfo` - Retrieve details about the current server.
   - `/can_timeout` - Check if the bot can time out a specific user.
-- Auctions commands coming soon 😉
+  - `/leaderboard server`- Shows the shiny leaderboard of the server
+  - `/leaderboard cleardata`- Deletes the data of shinys encountered in a server.
+  - `/shiny add <user> <amount of shinys>`- Adds particular no. of shinys found in the server.
+  -`/shiny remove <user> <amount>`- Removes particular no. of shinys found in the server. 
+
+- Auctions commands coming soon if i get time 😉
 ---
 
 ## **Contributing**
@@ -43,9 +52,6 @@ Exciting updates are in the works! Here's what you can expect in the next versio
 
 - **Auction Commands**  
   Adding dynamic auction commands for auctioning pokemons.
-
-- **MongoDB Integration**  
-  Implementing MongoDB for efficient data storage and retrieval.
 
 - **User-Friendly Updates**  
   Streamlined interfaces and better command handling for seamless usability.

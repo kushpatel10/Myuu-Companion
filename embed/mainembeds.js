@@ -116,6 +116,50 @@ function createGithubUrlButton(){
     .setStyle(ButtonStyle.Link)
     .setURL('https://github.com/kushpatel10/Myuu-Companion');
 }
+
+function createNoPermissionEmbed() {
+    return new EmbedBuilder()
+        .setTitle('Skill Issues')
+        .setDescription('Bohoo **nigga**! skill issues for you!')
+        .setFooter({text:'Get the admin perms to use this command!'})
+        .setColor('#2B2D31');
+}
+
+function createConfirmClearEmbed() {
+    return new EmbedBuilder()
+        .setTitle('Are you sure?')
+        .setDescription('Click **Yes** to clear all shiny data in the server or **No** to cancel.')
+        .setColor('#FF0000');
+}
+
+function createClearSuccessButton() {
+    return new ButtonBuilder()
+        .setCustomId('clear_yes')
+        .setLabel('Yes')
+        .setStyle('Success');
+}
+
+function createClearCancelButton() {
+    return new ButtonBuilder()
+        .setCustomId('clear_no')
+        .setLabel('No')
+        .setStyle('Danger');
+}
+
+function createShinyLeaderboardEmbed(userRank, user, leaderboardImage) {
+    const userRankMessage = userRank
+        ? `Your shiny encounter rank is **#${userRank.rank}** with **${userRank.shinyCount}** shinies.`
+        : `You haven't encountered any shinies yet!`;
+
+    return new EmbedBuilder()
+        .setTitle('Shiny Leaderboard of the Server!')
+        .setDescription(`${userRankMessage}`)
+        .setColor('#574AA2')
+        .setImage('attachment://output.png')  
+        .setTimestamp()
+        .setFooter({ text: `Make sure to star the github repository 🤬`, iconURL: user.displayAvatarURL() });
+}
+
 module.exports = {
     createBotInfoEmbed,
     createServerInfoEmbed,
@@ -126,5 +170,9 @@ module.exports = {
     createShinyButton,
     createPingEmbed,
     createGithubUrlButton,
-
+    createNoPermissionEmbed,
+    createClearCancelButton,
+    createClearSuccessButton,
+    createConfirmClearEmbed,
+    createShinyLeaderboardEmbed,
 };

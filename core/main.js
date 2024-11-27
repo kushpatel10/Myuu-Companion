@@ -1,4 +1,5 @@
 const { createShinyEmbed, createLogEmbed, createShinyButton, createGithubUrlButton } = require('../embed/mainembeds'); 
+const ShinyTracker = require('../mongo/shinyTracker'); 
 
 module.exports = async (client, SHINY_LOG_CHANNEL_MAP , message) => {
         try {
@@ -6,7 +7,7 @@ module.exports = async (client, SHINY_LOG_CHANNEL_MAP , message) => {
                 if (message.embeds.length > 0) {
                     const embedDescription = message.embeds[0]?.description;
 
-                    if (embedDescription?.includes("A wild") && embedDescription?.includes("★")) {
+                    if (embedDescription?.includes("A wild") && embedDescription?.includes("Yungoos")) {
                         const logChannelId = SHINY_LOG_CHANNEL_MAP[message.guild.id];
                         if (!logChannelId) return; 
 
@@ -15,6 +16,16 @@ module.exports = async (client, SHINY_LOG_CHANNEL_MAP , message) => {
 
                         const guildMember = await message.guild.members.fetch(shinyUserId);
                         guildMember.timeout(10 * 1000, 'Found a Shiny').catch(err => console.error('Timeout failed:', err));
+
+                        try {
+                            await ShinyTracker.findOneAndUpdate(
+                                { userId: shinyUserId, guildId: message.guild.id },
+                                { $inc: { shinyCount: 1 } },
+                                { upsert: true, new: true }
+                            );
+                        } catch (dbError) {
+                            console.error('Error updating shiny count in MongoDB:', dbError);
+                        }
 
                         const messageUrl = `https://discord.com/channels/${message.guild.id}/${message.channel.id}/${message.id}`;
                        
