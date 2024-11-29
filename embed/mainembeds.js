@@ -120,7 +120,7 @@ function createGithubUrlButton(){
 function createNoPermissionEmbed() {
     return new EmbedBuilder()
         .setTitle('Skill Issues')
-        .setDescription('Bohoo **nigga**! skill issues for you!')
+        .setDescription('Boohoo **nigga!** skill issues for you! womp womp!!')
         .setFooter({text:'Get the admin perms to use this command!'})
         .setColor('#2B2D31');
 }
