@@ -1,14 +1,22 @@
-const { createShinyLeaderboardEmbed , createGithubUrlButton } = require('../embed/mainembeds');
+const { createShinyLeaderboardEmbed , createGithubUrlButton , createNoPermissionEmbed } = require('../embed/mainembeds');
 const sharp = require('sharp');
 const path = require('path');
 const fs = require('fs');
-const { AttachmentBuilder } = require('discord.js');
+const { AttachmentBuilder, PermissionsBitField  } = require('discord.js');
 const ShinyTracker = require('../mongo/shinyTracker');
+const {ownerId} = require('../config.js')
 
 module.exports = {
     name: 'server',
     description: 'Generate a leaderboard for shiny counts in the server.',
     async execute(interaction) {
+        const isOwner = interaction.user.id === ownerId;
+        if (!isOwner && !interaction.member.permissions.has(PermissionsBitField.Flags.Administrator))  {
+             const noPermissionEmbed = createNoPermissionEmbed();
+            await interaction.reply({ embeds: [noPermissionEmbed]});
+            return;
+        }
+        
         await interaction.deferReply();
 
         try {
@@ -45,11 +53,12 @@ module.exports = {
 
             const svgTexts = leaderboard.map((entry, index) => {
                 const y = 25 + index * 42; 
+                const fontPath = path.join('./Arial.ttf');
                 return `
-                    <text x="75" y="${y}" font-family="Arial" font-size="16" font-weight="bold" fill="white">
+                    <text x="75" y="${y}" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">
                         ${entry.username}
                     </text>
-                    <text x="327" y="${y}" font-family="Arial" font-size="16" font-weight="bold" fill="white">
+                    <text x="327" y="${y}" font-family="sans-serif" font-size="16" font-weight="bold" fill="white">
                         ${entry.shinyCount}
                     </text>
                 `;
