@@ -18,7 +18,7 @@ const SHINY_LOG_CHANNEL_MAP = {
 
 const botactivity = "BOT_ACTIVITY_HERE",
 const pkcemoji = "<:EMOJI_NAME:EMOJI_ID>",
-// Exporting all configurations
+// Exporting all configurations (Okay everything added )
 module.exports = {
     BOT_TOKEN,
     CLIENT_ID,
