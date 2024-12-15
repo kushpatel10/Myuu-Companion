@@ -26,4 +26,5 @@ module.exports = {
     EXPRESS_PORT,
     SHINY_LOG_CHANNEL_MAP,
     botactivity,
+    pkcemoji,
 };
