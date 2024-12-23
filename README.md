@@ -30,7 +30,8 @@ A Discord bot designed to detect and handle specific Pokémon encounters (e.g., 
 
 # **Known-Issues**
 
-- Rate limits are not handled.  
+- Rate limits are not handled.
+- Some functions deprecated in Discord.js v14 are still present in the bot. As a result, certain commands might stop working in the future due to this.
 - Embed-based `mypkinfo` is not implemented for auctions.  
 - Some bugs exist, such as:
   - If the channel of an existing auction is deleted, the bot crashes. (A `catch` block needs to be added to handle this. You can contribute to fix this.)  
