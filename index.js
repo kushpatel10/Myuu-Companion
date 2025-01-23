@@ -23,6 +23,11 @@ const auctionInfo = require('./auction/info');
 const auctionHandler = require('./core/auctionHandler');
 const { handleButtonInteraction } = require('./core/auctionbutton'); 
 const auctionHandlerwallet = require('./core/auctionWallet');
+const { handleSlashCommand , handleInstagramReelCommand } = require('./reels');
+
+const timeoutPokemonAdd = require('./general/timeoutPokemonAdd');
+const timeoutPokemonRemove = require('./general/timeoutPokemonRemove');
+const timeoutInfo = require('./leaderboard/info');
 
 connectToMongoDB();
 
@@ -39,6 +44,16 @@ const client = new Client({
 
 const registerSlashCommands = async () => {
     const commands = [
+         new SlashCommandBuilder()
+           .setName('reel')
+           .setDescription('Fetch and display an Instagram reel')
+           .addStringOption((option) =>
+           option
+              .setName('link')
+              .setDescription('The link to the Instagram reel')
+              .setRequired(true)
+      )
+      .toJSON(),
         new SlashCommandBuilder()
             .setName('shiny')
             .setDescription('Manage shiny counts')
@@ -145,6 +160,30 @@ const registerSlashCommands = async () => {
                 .setDescription('Get info about the ongoing auction')
         )
         .toJSON(),
+        new SlashCommandBuilder()
+    .setName('timeoutpokemon')
+    .setDescription('Manage your timeout Pokémon list')
+    .addSubcommand((subcommand) =>
+        subcommand
+            .setName('add')
+            .setDescription('Add a Pokémon to your timeout list')
+            .addStringOption((option) =>
+                option.setName('pokemon')
+                    .setDescription('The Pokémon name to add')
+                    .setRequired(true)
+            )
+    )
+    .addSubcommand((subcommand) =>
+        subcommand
+            .setName('remove')
+            .setDescription('Remove a Pokémon from your timeout list')
+            .addIntegerOption((option) =>
+                option.setName('slot')
+                    .setDescription('The slot number of the Pokémon to remove (1-5)')
+                    .setRequired(true)
+            )
+    )
+    .toJSON(),
     ];
 
     const rest = new REST({ version: '10' }).setToken(BOT_TOKEN);
@@ -197,6 +236,9 @@ client.on('interactionCreate', async (interaction) => {
 
     if (interaction.isCommand()) {
         switch (interaction.commandName) {
+            case 'reel':
+                await handleSlashCommand(interaction);
+                break;
             case 'ping':
                 await ping.execute(interaction, client);
                 break;
@@ -287,6 +329,20 @@ client.on('interactionCreate', async (interaction) => {
                 }
                 break;
             }
+
+            case 'timeoutpokemon': {
+                const subcommand = interaction.options.getSubcommand();
+            
+                if (subcommand === 'add') {
+                    await timeoutPokemonAdd.execute(interaction, client);
+                } else if (subcommand === 'remove') {
+                    await timeoutPokemonRemove.execute(interaction, client);
+                } 
+                  else {
+                    console.log(`Unknown subcommand: ${subcommand}`);
+                }
+                break;
+            }
             default:
                 console.log(`Unknown command: ${interaction.commandName}`);
         }
@@ -295,7 +351,8 @@ client.on('interactionCreate', async (interaction) => {
 
 client.on('messageCreate', async (message) => {
     try {
-        if (message.author.id === "438057969251254293" && message.embeds.length > 0 && message.interaction?.commandName === 'wallet') {
+          await handleInstagramReelCommand(message, client);
+      if (message.author.id === "438057969251254293" && message.embeds.length > 0 && message.interaction?.commandName === 'wallet') {
             await auctionHandlerwallet.handleWalletEmbed(message, client);
         } else if (message.author.bot && message.author.id === '438057969251254293') {
             if (message.embeds.length > 0) {
