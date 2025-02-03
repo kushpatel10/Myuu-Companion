@@ -1,31 +1,37 @@
-# **Myuu-Companion**
+# **FrostyBot: A multipurpose Discord Bot for FrostyCord**
 
-A Discord bot designed to detect and handle specific Pokémon encounters (e.g., "Shiny" Pokémon or "Greninja-Ash") in messages from a specific bot and log these encounters in designated channels. The bot also provides additional functionality through various slash commands.
+ForstyBot is a feature-packed Discord bot originally designed for **FrostyCord** but now upgraded with a variety of useful functions, ranging from Pokémon encounter logging to content downloading from YouTube Shorts, Instagram Reels, and TikTok. Plus, it brings some fun to your server with Markov Chains to generate random, humorous sentences.
 
 # **Whats-New**
-- Added MongoDB to store the no. of shinys
-- Image leaderboard for the shinys encountered using Sharp module 
-- New Leaderboard commands!!
+- **Multipurpose Bot**: Expanded to support social media content downloading (YouTube Shorts, Instagram Reels, and TikTok).
+- **Markov Chain Fun**: Generates random funny sentences based on chat input.
+- **MongoDB Integration**: Tracks shiny Pokémon encounters in a database.
+- **Reworked File Structure**: Optimized the bot's file structure for better performance.
+- **New Slash Commands**: Includes new downloader and fun commands.
 ---
 ## **Features**
-- Detects and processes messages from myuu(`id: 438057969251254293`).
-- Recognizes Pokémon like "Shiny" and "Greninja-Ash" and performs actions such as:
-  - Timing out users for a short duration.
-  - Sending embeds with encounter details in the same channel.
-  - Logging these encounters in designated channels.
-- Slash commands for retrieving bot and server information:
-  - `/ping` - Check the bot's ping and system information.
-  - `/botinfo` - Get detailed information about the bot.
-  - `/serverinfo` - Retrieve details about the current server.
-  - `/can_timeout` - Check if the bot can time out a specific user.
-  - `/leaderboard server`- Shows the shiny leaderboard of the server
-  - `/leaderboard cleardata`- Deletes the data of shinys encountered in a server.
-  - `/shiny add <user> <amount of shinys>`- Adds particular no. of shinys found in the server.
-  -`/shiny remove <user> <amount>`- Removes particular no. of shinys found in the server. 
-  - `/botban <user> ` - Refrains a user to use the bot commands.
-  -`/removebotban <user>` - Removes the bot ban of a user. 
-  - New auction commands added too 😉! (Took me a lot of time to complete)
 
+### **Myuu Utility Commands**  
+- Detects "Shiny" Pokémon and special forms like "Greninja-Ash" and reacts accordingly.
+- Logs encounters to a dedicated channel.
+- Sends embed messages with encounter details and has timeout functionalities for specific users.
+- Custom pokemon timeout.
+- Shiny encountered leaderboard and routecount
+- Myuu pokemon auctions.
+  
+### **Markov Chains**  
+- Generates random, funny sentences in chat using Markov Chains to keep the conversation lively.
+- Uses **Trigrams** to create more logical sentence structures.
+- Trained on the chat that happens in the channel.
+
+### **Social Media Downloaders**  
+- **YouTube Shorts**: Downloads YouTube Shorts videos directly. (This one is a bit unreliable and breaks frequently)
+- **Instagram Reels**: Save Instagram Reels with ease.
+- **TikTok**: Downloads TikTok videos.
+
+### **Utility**
+- Slash commands!
+- And much more!!!
 ---
 
 # **Known-Issues**
@@ -36,6 +42,7 @@ A Discord bot designed to detect and handle specific Pokémon encounters (e.g., 
 - Some bugs exist, such as:
   - If the channel of an existing auction is deleted, the bot crashes. (A `catch` block needs to be added to handle this. You can contribute to fix this.)  
   - Need to add catchblocks somewhere so the bot dont crash.
+- The YouTube Shorts downloader breaks frequently when the code is hosted on a non-residential instance , so I use TOR proxy, though its slow!
 ---
 
 ## **Contributing**
@@ -62,7 +69,7 @@ Contributions are warmly welcomed! If you’d like to contribute to this project
 Exciting updates are in the works! Here's what you can expect in the next version of this bot:
 
 - **User-Friendly Updates**  
-  Streamlined interfaces and better command handling for seamless usability.
+  Streamlined interfaces and improved command handling for seamless usability (probably including a help command).
 
 - **And Much More!**  
   Im continuously brainstorming and iterating to bring more exciting features. Stay tuned!
@@ -76,16 +83,17 @@ Want to suggest a feature? Open an [issue](#) or contribute your ideas via pull 
 ## **Setup and Installation**
 
 ### **Requirements**
-- [Node.js](https://nodejs.org/) v16 or later
+- [Node.js](https://nodejs.org/) v18 or later
 - [Discord.js](https://discord.js.org/) v14
 - A Discord bot token
+- A TOR proxy
 - A configured `config.js` file
 
 ### **Installation Steps**
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/your-repo-name/shiny-bot.git
-   cd shiny-bot
+   git clone https://github.com/kushpatel10/myuu-companion.git
+   cd Myuu-companion
 2. ***Download Dependencies***
    `npm install`
 3. Set Up Configuration Create a config.js file in the root directory with the following structure:
@@ -99,8 +107,12 @@ Want to suggest a feature? Open an [issue](#) or contribute your ideas via pull 
         'GUILD_ID_1': 'CHANNEL_ID_1',
         'GUILD_ID_2': 'CHANNEL_ID_2',
     }}
-4.`node index.js`
+4. TOR Proxy and Cookies Setup
+  - You need to have a **TOR** proxy running for the YouTube Shorts downloader to work.
+  - Additionally, you must fill in `general/downloader/cookies.txt` for YouTube Shorts to function correctly.
+5.`node index.js`
 
+^^ **If you have any issues setting up the bot, feel free to DM me on Discord. My username is ghoul.js**
 ---
 
 ## **License**
@@ -112,8 +124,9 @@ This project is licensed under the [Creative Commons Legal Code CC0 1.0 Universa
 ## **Credits**
 
 - **Myself 😅**: For creating this awesome bot!
-- **ChatGPT**: For prettifying the code , and crafting this README.
+- **ChatGPT**: For prettifying the code, markov chains algorithm, and crafting this README.
 - **Discord.js Community**: For providing an amazing library and resources to create Discord bots.
 - **Inspiration**: From the [Myuu-Anti-Shiny-Discord-Bot](https://github.com/SomeRandomGuy009/Myuu-Anti-Shiny-Discord-Bot).
+- **Markov Chains**: Logic for sending messages generated by Markov Chains (originally by [knownasbot](https://github.com/knownasbot/markov-bot))
 
 ---
