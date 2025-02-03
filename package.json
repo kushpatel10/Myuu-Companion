@@ -1,6 +1,6 @@
 {
   "name": "myuu-companion",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,10 +11,12 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.9.0",
+    "child_process": "^1.0.2",
     "discord.js": "^14.16.3",
     "express": "^4.21.1",
     "fs": "^0.0.1-security",
     "mongoose": "^8.8.2",
+    "node-fetch": "^2.6.7",
     "os": "^0.1.2",
     "path": "^0.12.7",
     "sharp": "^0.33.5"

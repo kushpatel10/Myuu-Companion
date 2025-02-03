@@ -3,9 +3,6 @@
 A Discord bot designed to detect and handle specific Pokémon encounters (e.g., "Shiny" Pokémon or "Greninja-Ash") in messages from a specific bot and log these encounters in designated channels. The bot also provides additional functionality through various slash commands.
 
 # **Whats-New**
-- Custom Pokemon Timeout! (Stores the pokemon data in MongoDB)
-- Reels downloader (IDK WHY)
-- Pokemon Auction commands
 - Added MongoDB to store the no. of shinys
 - Image leaderboard for the shinys encountered using Sharp module 
 - New Leaderboard commands!!
@@ -24,13 +21,9 @@ A Discord bot designed to detect and handle specific Pokémon encounters (e.g., 
   - `/leaderboard server`- Shows the shiny leaderboard of the server
   - `/leaderboard cleardata`- Deletes the data of shinys encountered in a server.
   - `/shiny add <user> <amount of shinys>`- Adds particular no. of shinys found in the server.
-  - `/shiny remove <user> <amount>`- Removes particular no. of shinys found in the server. 
+  -`/shiny remove <user> <amount>`- Removes particular no. of shinys found in the server. 
   - `/botban <user> ` - Refrains a user to use the bot commands.
-  - `/removebotban <user>` - Removes the bot ban of a user.
-  - `/info <user>` - Shows Custom Pokemon Timeout list!
-  - `/timeoutpokemon add <pokemon>` - Adds the pokemon in timeout list (Will timeout you when encountered)!
-  - `/timeoutpokemon remove <slot no.>` - Removes the pokemon from the timeout list!
-  - `/routecount` - Shows your routecount! (It will reset if a shiny is found)
+  -`/removebotban <user>` - Removes the bot ban of a user. 
   - New auction commands added too 😉! (Took me a lot of time to complete)
 
 ---
@@ -69,7 +62,10 @@ Contributions are warmly welcomed! If you’d like to contribute to this project
 Exciting updates are in the works! Here's what you can expect in the next version of this bot:
 
 - **User-Friendly Updates**  
-  Streamlined interfaces and better command handling for seamless usability. (Like help command and blah blah)
+  Streamlined interfaces and better command handling for seamless usability.
+
+- **And Much More!**  
+  Im continuously brainstorming and iterating to bring more exciting features. Stay tuned!
 
 ---
 
@@ -88,8 +84,8 @@ Want to suggest a feature? Open an [issue](#) or contribute your ideas via pull 
 ### **Installation Steps**
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/kushpatel10/Myuu-Companion.git
-   cd Myuu-Companion
+   git clone https://github.com/your-repo-name/shiny-bot.git
+   cd shiny-bot
 2. ***Download Dependencies***
    `npm install`
 3. Set Up Configuration Create a config.js file in the root directory with the following structure:
